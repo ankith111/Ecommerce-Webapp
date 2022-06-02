@@ -1,0 +1,55 @@
+There are 4 api endpoints i have built for onboarding screen.
+
+/categories : 
+
+    description : used to get all type of product categories.
+    input : None
+    method : GET
+
+
+
+/question_categories :
+
+    description : used to get all type of questions categories.
+    input : None
+    method : GET 
+
+
+
+/questions :
+
+    description : used to get all questions of specific category.
+    input : category (category_name)
+    method : GET 
+
+
+
+/submit_answers/ :
+
+    description : used to submit answer of all questions.
+    input : [{
+        'company_name' : '',
+        'answers' : [
+            {
+                'question_uuid' : '',
+                'options_uuids' : [
+                    '',
+                    ''
+                ]
+            }
+        ]
+    },
+    {
+        'company_name' : '',
+        'answers' : [
+            {
+                'question_uuid' : '',
+                'options_uuids' : [
+                    '',
+                    ''
+                ]
+            }
+        ]
+    }]
+
+    method : POST  
