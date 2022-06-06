@@ -1,0 +1,15 @@
+There are 2 api endpoints i have built for authentication.
+
+/register/ :
+
+    description : to register new user
+    input : [name, phone, password, password2(this is just to check if the password is same or not)]
+    method : POST
+
+
+
+/login/ :
+
+    description : to login user
+    input : [phone, password]
+    method : POST
