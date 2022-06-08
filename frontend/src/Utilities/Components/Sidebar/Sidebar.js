@@ -1,7 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Sidebar.scss";
 import logo from "../../Assets/goGlocal.svg";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import {
+    useHistory,
+    useLocation,
+} from "react-router-dom/cjs/react-router-dom.min";
 
 const hamburgerIcon = (
     <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAAANElEQVRoge3WwQ0AIAzEsCv77wxLIFoke4I8kwAAqSS7O+KG1R0AAADP2HgAAPiOjQcABjrSpwMHOlg7MAAAAABJRU5ErkJggg==" />
@@ -21,8 +24,17 @@ const whiteMenuIcon = (
 
 export default function Sidebar() {
     const history = useHistory();
+    const location = useLocation();
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const sidebarRef = useRef();
+
+    const [currLocation, setCurrLocation] = useState();
+
+    useEffect(() => {
+        console.log("path", location.pathname);
+        if (location.pathname.startsWith("/logistics"))
+            setCurrLocation("logistics");
+    });
 
     const sidebarStateHandle = () => {
         setSidebarOpen((oldState) => {
@@ -57,64 +69,109 @@ export default function Sidebar() {
                 </header>
                 <div className="nav">
                     <div className="pad-max">
-                        <a href="#" className="f-xs">
-                            <i className="fa-solid fa-chart-pie"></i>Cataloging
+                        <a href="#">
+                            <div className="sidebar-items">
+                                <i className="fa-solid fa-chart-pie"></i>
+                                <div className="sidebar_title f-xs">
+                                    Cataloging
+                                </div>
+                            </div>
                         </a>
                     </div>
                     <div className="pad-max">
-                        <a href="#" className="f-xs">
-                            <i className="fa-solid fa-warehouse"></i>GoGlocal
-                            Store
+                        <a href="#">
+                            <div className="sidebar-items">
+                                <i className="fa-solid fa-warehouse"></i>
+                                <div className="sidebar_title f-xs">
+                                    GoGlocal Store
+                                </div>
+                            </div>
                         </a>
                     </div>
                     <div className="pad-max">
-                        <a href="#" className="f-xs">
-                            <i className="fa-solid fa-globe"></i>Global
-                            Expansion <span id="gES">Strategy</span>
+                        <a href="#">
+                            <div className="sidebar-items">
+                                <i className="fa-solid fa-globe"></i>
+                                <div className="sidebar_title f-xs">
+                                    Global Expansion Strategy
+                                </div>
+                            </div>
                         </a>
                     </div>
                     <div className="pad-min">
-                        <a href="#" className="f-xs">
-                            <i className="fa-solid fa-people-group"></i>
-                            Marketplace <span id="mI">Integration</span>
-                        </a>
-                    </div>
-
-                    <div className="pad-min">
-                        <a href="#" className="f-xs">
-                            <i className="fa-solid fa-chalkboard-user"></i>
-                            Digital Push
-                        </a>
-                    </div>
-
-                    <div className="pad-min">
-                        <a href="#" className="f-xs">
-                            <i className="fa-solid fa-lightbulb"></i> B2B
+                        <a href="#">
+                            <div className="sidebar-items">
+                                <i className="fa-solid fa-people-group"></i>
+                                <div className="sidebar_title f-xs">
+                                    Marketplace Integration
+                                </div>
+                            </div>
                         </a>
                     </div>
 
                     <div className="pad-min">
-                        <a href="#" className="f-xs">
-                            <i className="fa-solid fa-address-book"></i> Order
-                            Management
+                        <a href="#">
+                            <div className="sidebar-items">
+                                <i className="fa-solid fa-chalkboard-user"></i>
+                                <div className="sidebar_title f-xs">
+                                    Digital Push
+                                </div>
+                            </div>
                         </a>
                     </div>
 
                     <div className="pad-min">
-                        <a href="/logistics" className="f-xs">
-                            <i className="fa-solid fa-truck-fast"></i> Logistics
+                        <a href="#">
+                            <div className="sidebar-items">
+                                <i className="fa-solid fa-lightbulb"></i>
+                                <div className="sidebar_title f-xs">B2B</div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div className="pad-min">
+                        <a href="#">
+                            <div className="sidebar-items">
+                                <i className="fa-solid fa-address-book"></i>
+                                <div className="sidebar_title f-xs">
+                                    Order Management
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div
+                        className={`pad-min ${
+                            currLocation === "logistics" ? "currLocation" : ""
+                        }`}
+                    >
+                        <a href="/logistics">
+                            <div className="sidebar-items">
+                                <i className="fa-solid fa-truck-fast"></i>
+                                <div className="sidebar_title f-xs">
+                                    Logistics
+                                </div>
+                            </div>
                         </a>
                     </div>
                     <div className="pad-min">
-                        <a href="#" className="f-xs">
-                            <i className="fa-solid fa-money-check-dollar"></i>
-                            Payments
+                        <a href="#">
+                            <div className="sidebar-items">
+                                <i className="fa-solid fa-money-check-dollar"></i>
+                                <div className="sidebar_title f-xs">
+                                    Payments
+                                </div>
+                            </div>
                         </a>
                     </div>
                     <div className="pad-min">
-                        <a href="#" className="f-xs">
-                            <i className="fa-solid fa-handshake"></i>
-                            Trade Compliance
+                        <a href="#">
+                            <div className="sidebar-items">
+                                <i className="fa-solid fa-handshake"></i>
+                                <div className="sidebar_title f-xs">
+                                    Trade Compliance
+                                </div>
+                            </div>
                         </a>
                     </div>
                 </div>
@@ -123,13 +180,23 @@ export default function Sidebar() {
 
                 <div className="profile-sec nav">
                     <div className="pad-max">
-                        <a href="#" className="f-xs">
-                            <i className="fa-solid fa-user"></i> Profile
+                        <a href="#">
+                            <div className="sidebar-items">
+                                <i className="fa-solid fa-handshake"></i>
+                                <div className="sidebar_title userf-xs">
+                                    Profile
+                                </div>
+                            </div>
                         </a>
                     </div>
                     <div className="pad-min" style={{ marginTop: "1rem" }}>
-                        <a href="#" className="f-xs">
-                            <i className="fa-solid fa-headset"></i> Support
+                        <a href="#">
+                            <div className="sidebar-items">
+                                <i className="fa-solid fa-headset"></i>
+                                <div className="sidebar_title userf-xs">
+                                    Support
+                                </div>
+                            </div>
                         </a>
                     </div>
                 </div>

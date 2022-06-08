@@ -9,7 +9,7 @@ function Navbar(prop) {
     if (prop.screen !== 0)
         return (
             <div className="navbox">
-                <div className="navbar-title f-m">{prop.title}</div>
+                <div className="navbar-title f-xs fw-r">{prop.title}</div>
                 <span className="navBar-btn-grp">
                     <div className="nav-button-1" style={{ display: "none" }}>
                         <Button className="btn-primary">
