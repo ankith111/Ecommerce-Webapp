@@ -56,6 +56,15 @@
         padding: 10px 0px 10px 20px;
         
         }   
+        .form2{
+            width: 700px;
+            background: #FFFFFF;
+            border: 1px solid #1D1125;
+           border-radius: 15px;
+            
+            }
+            
+        
         .f3{
             // background-color: aquamarine;
             padding: 0px 0px 0px 60px;
@@ -146,4 +155,74 @@ padding: 3px 2px;
     padding: 10px 20px;
     border-radius: 15px;
     justify-content: flex-end;
+}
+
+
+.tb{
+    column-gap: 80px;
+}
+
+.us{
+    
+    background: #FFFFFF;
+    border: 1px solid #1D1125;
+    border-radius: 15px;
+ padding: 10px 0px 10px 20px;
+    width:85%;
+
+}
+
+.padding-table-columns{
+background: #FFFFFF;
+        
+border: 1px solid grey;
+border-radius: 15px;
+width:90%;
+margin-left:4%;
+padding-left: 1%;
+padding-right: 5%;
+
+}
+
+
+
+.chapu{
+    text-align: center;
+    
+}
+.chapa{
+    text-align: center;
+    margin-top: 23px;
+    margin-bottom: 22px;
+
+}
+
+.sb{
+padding:10px 20px;
+   margin-left:auto; 
+   margin-right: auto;
+   display: flex;
+   flex-direction: column;
+
+     row-gap: 20px;
+background-color: aqua;
+background: #FFFFFF;
+border: 1px solid #C7C7C7;
+border-radius: 8px;
+
+}
+
+.u1{
+    display: flex;
+    flex-direction: row ;
+    justify-content: flex-start;
+
+}
+.u2{
+    width:25%;
+
+}
+.u2m{
+
+    width:50%;
 }

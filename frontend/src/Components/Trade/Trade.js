@@ -11,13 +11,18 @@ function Trade() {
       <Sidebar />
       <div className="m1">
         <div className="hed1">
-        <div className="nav1 f-l fw-b">
-        <div>Trade compliance</div> 
-        <img src={i}></img>
+          <div className="nav1 f-l fw-b">
+            <div>Trade compliance</div>
+            <img src={i}></img>
+          </div>
+          <div className="hm1">
+            <div>
+              <span>Home/</span>{" "}
+              <span style={{ color: "#646464" }}>Trade Compliance</span>{" "}
+            </div>
+          </div>
         </div>
-        <div className="hm1"><div><span>Home/</span> <span style={{color: "#646464"}}>Trade Compliance</span> </div></div>
-        </div>
-       
+
         <div className="f3">
           <form className="form">
             <div className="input">
@@ -25,18 +30,21 @@ function Trade() {
                 Origin country:
               </label>
               <select className="ph" name="country" id="cars">
-                <option  placeholder="Country" className="op ff-poppins f-sx fw-m" value="volvo">
-                  Volvo
+                <option
+                  placeholder="Country"
+                  className="op ff-poppins f-sx fw-m"
+                  value="volvo"
+                >
+                  USA
                 </option>
-                <option placeholder="Country" className="op ff-poppins f-sx fw-m" value="saab">
-                  Saab
+                <option
+                  placeholder="Country"
+                  className="op ff-poppins f-sx fw-m"
+                  value="saab"
+                >
+                  India
                 </option>
-                <option placeholder="Country" className="op ff-poppins f-sx fw-m" value="opel">
-                  Opel
-                </option>
-                <option className="op ff-poppins f-sx fw-m" value="audi">
-                  Audi
-                </option>
+                
               </select>
               <div className="usd"></div>
             </div>
@@ -46,17 +54,12 @@ function Trade() {
               </label>
               <select className="ph" name="country" id="cars">
                 <option className="op ff-poppins f-sx fw-m" value="volvo">
-                  Volvo
+                  USA
                 </option>
                 <option className="op ff-poppins f-sx fw-m" value="saab">
-                  Saab
+                  India
                 </option>
-                <option className="op ff-poppins f-sx fw-m" value="opel">
-                  Opel
-                </option>
-                <option className="op ff-poppins f-sx fw-m" value="audi">
-                  Audi
-                </option>
+                
               </select>
               <div className="usd"></div>
             </div>
@@ -94,23 +97,34 @@ function Trade() {
               >
                 Submit
               </Button>
-            
             </div>
           </form>
 
           <form className="form">
-          <div className="input">
+            <div className="input">
               <label for="country" className="f-sx fw-m lab">
                 Construction:
               </label>
               <select className="ph" name="country" id="cars">
-                <option  placeholder="Country" className="op ff-poppins f-sx fw-m" value="volvo">
+                <option
+                  placeholder="Country"
+                  className="op ff-poppins f-sx fw-m"
+                  value="volvo"
+                >
                   Volvo
                 </option>
-                <option placeholder="Country" className="op ff-poppins f-sx fw-m" value="saab">
+                <option
+                  placeholder="Country"
+                  className="op ff-poppins f-sx fw-m"
+                  value="saab"
+                >
                   Saab
                 </option>
-                <option placeholder="Country" className="op ff-poppins f-sx fw-m" value="opel">
+                <option
+                  placeholder="Country"
+                  className="op ff-poppins f-sx fw-m"
+                  value="opel"
+                >
                   Opel
                 </option>
                 <option className="op ff-poppins f-sx fw-m" value="audi">
@@ -159,41 +173,8 @@ function Trade() {
               </select>
               <div className="usd"></div>
             </div>
-            <div className="input">
-              <label for="country" className="f-sx fw-m lab">
-                Value of shipment:
-              </label>
-              <input className="ph"></input>
-              <div className="usd">USD</div>
-            </div>
+
             <div className="btns">
-              <Button
-                //  style={{ justifySelf: "flex-end" }}
-                className="btn-primary fw-m f-s sub"
-              >
-                Submit
-              </Button>
-            </div>
-            {/* <div className="input">
-              <label for="country" className="f-sx fw-m lab">
-                Value of shipment:
-              </label>
-              <select className="ph" name="country" id="cars">
-                <option className="op ff-poppins fw-m" value="volvo">
-                  Volvo
-                </option>
-                <option className="op ff-poppins f-sx fw-m" value="saab">
-                  Saab
-                </option>
-                <option className="op ff-poppins f-sx fw-m" value="opel">
-                  Opel
-                </option>
-                <option className="op ff-poppins f-sx fw-m" value="audi">
-                  Audi
-                </option>
-              </select>
-            </div> */}
-            <div className="btns" style={{ width: "150px" }}>
               <Button
                 //  style={{ justifySelf: "flex-end" }}
                 className="btn-primary fw-m f-s sub"
@@ -203,92 +184,134 @@ function Trade() {
             </div>
           </form>
 
-          <form className="form">
-            <div className="input">
-              <label for="country" className="f-sx fw-m">
-                Origin country:
-              </label>
-              <select className="ph" name="country" id="cars">
-                <option className="op ff-poppins f-sx fw-m" value="volvo">
-                  Volvo
-                </option>
-                <option className="op ff-poppins f-sx fw-m" value="saab">
-                  Saab
-                </option>
-                <option className="op ff-poppins f-sx fw-m" value="opel">
-                  Opel
-                </option>
-                <option className="op ff-poppins f-sx fw-m" value="audi">
-                  Audi
-                </option>
-              </select>
+          <div className="us">
+            <div className="chapu fw-m">
+              U.S. Census Bureau - Foreign Trade Schedule B (2022) <br />
+              <div className="chapa fw-m ">
+                Chapter61 <br />
+                CHAPTER 61-ARTICLES OF APPAREL AND CLOTHING ACCESSORIES, KNITTED
+                OR CROCHETED <br />
+              </div>
             </div>
-            <div className="input">
-              <label for="country" className="f-sx fw-m">
-                Destination country:
-              </label>
-              <select className="ph" name="country" id="cars">
-                <option className="op ff-poppins f-sx fw-m" value="volvo">
-                  Volvo
-                </option>
-                <option className="op ff-poppins f-sx fw-m" value="saab">
-                  Saab
-                </option>
-                <option className="op ff-poppins f-sx fw-m" value="opel">
-                  Opel
-                </option>
-                <option className="op ff-poppins f-sx fw-m" value="audi">
-                  Audi
-                </option>
-              </select>
+
+            {/* <table className="padding-table-columns">
+  <tr >
+   <div><th align="left">Schedule B Number</th></div> 
+    <th align="left">Description</th>
+    <th align="left">UOM</th>
+  </tr>
+  <tr  >
+    <td>61.04</td>
+    <td>Women's or girls' suits, ensembles, suit-type jackets, blazers. dresses, skirts, divided skirts, trousers, bib and brace overalls, breeches and shorts (other than swimwear) knitted or crocheted:</td>
+    <td></td>
+  </tr>
+  <tr >
+    <td></td>
+    <td>-Dresses</td>
+    <td></td>
+  </tr>
+  <tr >
+    <td>61.04</td>
+    <td>--of cotton</td>
+    <td>Doz.,kg</td>
+  </tr>
+  
+</table>
+           </div> */}
+     <div className="sb">
+            <div className=" u1 fw-b">
+           
+            <div className="u2 ">
+            Schedule B Number
             </div>
-            <div className="input">
-              <label for="country" className="f-sx fw-m">
-                Describe your Product:
-              </label>
-              <select className="ph" name="country" id="cars">
-                <option className="op ff-poppins f-sx fw-m" value="volvo">
-                  Volvo
-                </option>
-                <option className="op ff-poppins f-sx fw-m" value="saab">
-                  Saab
-                </option>
-                <option className="op ff-poppins f-sx fw-m" value="opel">
-                  Opel
-                </option>
-                <option className="op ff-poppins f-sx fw-m" value="audi">
-                  Audi
-                </option>
-              </select>
+            
+            <div className="u2m   ">
+            Description
             </div>
-            <div className="input">
-              <label for="country" className="f-sx fw-m">
-                Value of shipment:
-              </label>
-              <select className="ph" name="country" id="cars">
-                <option className="op ff-poppins fw-m" value="volvo">
-                  Volvo
-                </option>
-                <option className="op ff-poppins f-sx fw-m" value="saab">
-                  Saab
-                </option>
-                <option className="op ff-poppins f-sx fw-m" value="opel">
-                  Opel
-                </option>
-                <option className="op ff-poppins f-sx fw-m" value="audi">
-                  Audi
-                </option>
-              </select>
+           
+            <div className="u2  ">
+            UOM
             </div>
-            <div className="btns" style={{ width: "150px" }}>
-              <Button
-                //  style={{ justifySelf: "flex-end" }}
-                className="btn-primary fw-m f-s sub"
-              >
-                Submit
-              </Button>
+            
+        < hr/>
+
+            
             </div>
-          </form>
+            <div className="u1">
+
+            <div className="u2">
+            61.04
+            </div>
+            
+            <div className="u2m">
+            Women's or girls' suits, ensembles, suit-type jackets, blazers. dresses, skirts, divided skirts, trousers, bib and brace overalls, breeches and shorts (other than swimwear) knitted or crocheted:
+            </div>
+           
+            <div className="u2">
+            
+            </div>
+            
+</div>
+            
+            
+            <div className="u1">
+
+
+
+
+            <div className="u2">
+           
+            </div>
+            
+            <div className="u2m">
+               -Dresses
+            </div>
+           
+            <div className="u2">
+            
+            </div>
+            
+
+
+
+
+
+
+
+
+
+
+            </div>
+            <div className="u1">
+
+            <div className="u2">
+            61. 04
+            </div>
+            
+            <div className="u2m">
+            - -of cotton
+            </div>
+           
+            <div className="u2">
+            Doz.,kg
+            </div>
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+</div>
+          </div>
         </div>
       </div>
     </div>
