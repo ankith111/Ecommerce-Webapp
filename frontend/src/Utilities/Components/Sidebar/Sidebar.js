@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./Sidebar.scss";
+import {Link} from "react-router-dom";
 import logo from "../../Assets/goGlocal.svg";
 import {
     useHistory,
@@ -165,14 +166,14 @@ export default function Sidebar() {
                         </a>
                     </div>
                     <div className="pad-min">
-                        <a href="#">
+                        <Link to="/trade">
                             <div className="sidebar-items">
                                 <i className="fa-solid fa-handshake"></i>
                                 <div className="sidebar_title f-xs">
                                     Trade Compliance
                                 </div>
                             </div>
-                        </a>
+                        </Link>
                     </div>
                 </div>
 
