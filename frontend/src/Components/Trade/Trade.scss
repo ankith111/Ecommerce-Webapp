@@ -137,6 +137,7 @@ padding: 10px 3px;
 .op{
 background-color: #F7F7F7;
 padding: 3px 2px;
+color:#1D1125;
 
 // box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
@@ -225,4 +226,49 @@ border-radius: 8px;
 .u2m{
 
     width:50%;
+}
+
+.uno{
+
+   color:grey;
+}
+.plah{
+    color: grey;
+}
+.sheet{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top:50px;
+    width: 500px;
+    background-color: #C7C7C7;
+    max-height: 50px;
+    // background-color: #C7C7C7;
+}
+.inputsp{
+display: flex;
+flex-direction: column;
+width: 50%;
+background-color: aqua;
+position: relative;
+
+}
+.ins{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: pink;
+}
+.user{
+    background-color: aquamarine;
+    border: 1px solid black;
+}
+.insp{
+height:50px;
+border: 2px solid #CDCFD2;
+box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
+border-radius: 8px;
+background-color: #FFFFFF;
+padding: 10px 3px;
 }
