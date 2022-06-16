@@ -1,16 +1,21 @@
 import { React, useEffect, useState } from "react";
 import { BrowserRouter as Router, Link, useHistory } from "react-router-dom";
 import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input/input";
-// import '../App.css';
 import axios from "axios";
 import "./login.css";
 import URL from "../../URL/URL";
+import img from "./images/g10.png"
+import Navbar from "./NavLogin.js";
+import OtpForm from "./OtpForm.js";
+
 
 export default function SignUpForm() {
     const [phone, setPhone] = useState("");
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [password2, setPassword2] = useState("");
+    const [showOtpModal, setShowOtpModal] = useState(false);
+
     const history = useHistory();
 
     const handleClick = async (e) => {
@@ -27,16 +32,10 @@ export default function SignUpForm() {
             const body = JSON.stringify(data);
             const res = await axios.post(url, body, config);
             console.log(res);
-
-            if (res.data.phone === phone) {
-                history.push({
-                    pathname: "/otp",
-                    state: { phone: phone },
-                });
-            } else {
-                console.error(res.data.phone);
-            }
+            setShowOtpModal(true);
+        
         } catch (err) {
+            // setShowOtpModal(true);
             console.log(err);
         }
     };
@@ -44,21 +43,30 @@ export default function SignUpForm() {
     const history1 = useHistory();
 
     function SwitchSignin() {
-        history1.push("/");
+        history1.push("/signin");
     }
 
-    return (
+    const hideOtpModalHandler = () => {
+        setShowOtpModal(false)
+    }
+    
+const mode = (
+<>
+    <div className="back-img">
+        <div className="app-top" />
+
+            <Navbar />
         <div className="App">
-            <div className="appAside" />
+           
             <div className="appForm">
                 <div className="formCenter">
                     <form action="">
                         <div className="formField">
-                            <h3>Sign Up</h3>
-                            <label className="formFieldLabel" htmlFor="phone">
+                            <h3 className="header">Sign Up</h3>
+                            {/* <label className="formFieldLabel" htmlFor="phone">
                                 {" "}
                                 Create Account{" "}
-                            </label>
+                            </label> */}
 
                             <input
                                 className="formFieldInput"
@@ -119,15 +127,40 @@ export default function SignUpForm() {
                             </button>
                         </div>
                     </form>
-
-                    <div className="button">
+                    <div className="login-footer">
                         <span>Already have an account?</span>
                         <button className="pageSwitcher" onClick={SwitchSignin}>
                             Sign in
                         </button>
                     </div>
+                    
                 </div>
+                
+            </div>
+            <div  className="appAside">
+                <img  className="appAside-img" src={img} alt="" />
             </div>
         </div>
+    </div>
+ </>
+)
+    return (
+        <>   
+        {showOtpModal && (
+             <OtpForm
+                onClose={hideOtpModalHandler}
+                // setState={setAddressState}
+                phone={phone}
+             />
+        )}
+
+         <>
+            
+                 <>{mode}</>
+            
+           
+        </> 
+
+</> 
     );
 }

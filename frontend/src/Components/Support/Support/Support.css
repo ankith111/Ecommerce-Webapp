@@ -1,0 +1,142 @@
+  .box{
+    margin-right: 280px;
+  }
+  
+  .nav-tabs{
+      display: flex;
+      flex-direction: row;
+  }
+  
+  .container{
+    margin-top: 30px;
+    
+  }
+
+  .ticket-menu{
+    margin-top: 30px;
+    width: 30%;
+  }
+  
+  .nav-link{
+    color: rgb(0, 0, 0) ;
+    padding: 0% ;
+    color: #646464 ;
+    cursor: pointer;
+   }
+  
+  .active{
+    background: transparent;
+    color: rgb(0, 0, 0);
+    border-bottom: 2px solid rgb(0, 0, 0);
+   }
+  
+   .nav-link:hover{
+    background: transparent;
+    color: rgb(0, 0, 0) ;
+    border-bottom: 2px solid rgb(0, 0, 0);
+  }
+
+   
+.col-nav{
+    width: 35%;
+  }
+   
+   .mrg-l{
+     margin-left: 90px ;
+   }
+  
+  .horz-line{
+    /* width: 50%; */
+    border-top: 1px solid #B4B8BB;
+  }
+  
+  
+  
+  .formFieldInput {
+    width: 100%;
+    padding: 5px;
+    padding-left: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    border: 2px solid #B4B4B4;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+  
+  }
+  
+  /* .formFieldButton {
+    margin-top: 20px;
+    width: 80%;
+    background-color: #020007;
+    color: white;
+    border: none;
+    outline: none;
+    text-align: center;
+    border-radius: 13px;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 24px;
+  
+  }
+   */
+
+  .status-menu{
+    margin-top: 10px;
+  }
+  
+  .attach-image{
+    padding: 10px;
+    border: 2px solid #B4B8BB;
+    border-radius: 10px;
+    color: #878A8C;
+    cursor: pointer;
+  }
+  
+  .table-data{
+    font-weight: 400;
+    font-size: 16px;
+  }
+  
+  .img-document{
+    /* position: relative; */
+    width: 50px;
+    height: 50px;
+     border-radius: 20%;
+    cursor: pointer;
+  }
+
+  .thead-box{
+    box-shadow: 5px 4px 35px 2px rgba(0, 0, 0, 0.17);
+    height: 60px;
+    border-radius: 12px 12px 0px 0px;
+  }
+
+  .table{
+      width: 100%;
+  }
+
+  th{
+    text-align: left;
+    padding-left: 20px;
+
+  }
+
+  td{
+      border-bottom: 0.6px solid #CDCFD2;
+      padding-left: 20px;
+      
+  }
+
+  tr{
+      height: 45px;
+  }
+  
+  table {
+    border-collapse: separate;
+    border-spacing: 0 15px;
+  }
