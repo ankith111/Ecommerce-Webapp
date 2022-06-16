@@ -1,9 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import Button from "../../Utilities/Components/Button/Button";
 import "./component.css";
 import { useHistory, useLocation } from "react-router-dom";
-
+import logo from "./Images/Group3109.png"
 export default function Navbar() {
     const history = useHistory();
 
@@ -18,37 +17,41 @@ export default function Navbar() {
     }
 
     return (
-        <div className="navbar">
-            <div className="logo"></div>
-            {/* <div className="nav-buttons">
-
-                <button className="button btn-home" to="/">Home</button>
-                <button className="button btn-career" to="/">Careers</button>
-                <button className="button  btn-about" to="/">About Us</button>
-                <button className="button btn-faq " to="/">FAQ</button>
-                
-          </div> */}
-
-            <div className="login">
-                <div className="btn-sign-in">
-                    <Button
-                        className="btn btn-primary"
+<div >
+    <div className="navbar">
+        <div className="nav-buttons">
+                <img  className="logo"  src={logo} alt="" />
+               <div className="btn-btn-mid">
+                    <button className="btn-btn btn-home" to="/">Home</button>
+                    <button className="btn-btn btn-career" to="/">Careers</button>
+                    <button className="btn-btn  btn-about" to="/">About Us</button>
+                    <button className="btn-btn btn-faq " to="/">FAQ</button>
+                </div>
+               
+                 <div className="signin-signup-btn">
+                    <button
+                        className="btn-sign-in"
                         name="Sign in"
                         onClick={handleSignin}
                     >
                         Sign in
-                    </Button>
-                </div>
+                    </button>
+               
+
                 <div className="btn-sign-up">
                     <Button
-                        className="btn btn-secondary3"
+                        className="btn btn-primary "
                         name="Sign up"
                         onClick={handleSignup}
                     >
                         Sign Up
                     </Button>
                 </div>
-            </div>
+                </div>
+          </div>
         </div>
+</div>
     );
 }
+
+
