@@ -12,82 +12,68 @@ import { Metadata } from "libphonenumber-js/core";
 function Trade() {
   const url = "http://65.0.204.216/trade_compliance/get_hs_code";
 
-
   const [matdata, setmatdata] = useState({});
   const [gendata, setgendata] = useState("");
+  const [sterm, setsterm] = useState("");
+  const [cot, setcot] = useState(false);
+  const [dis, setdis] = useState("none");
+  const [suc, setsuc] = useState("");
+  let m = 0;
+
   const [Data, setData] = useState({
-    chapter: "62",
+    hscode:"6106",
+    chapter: "61",
     format: "questions",
     description: "",
-   
+
     answers: {
       gender: gendata,
-      material : {
-         cotton : matdata.cotton,
-      }
-  }
+      material: {},
+    },
   });
 
   async function addTodo() {
-  
     try {
       const url = "http://65.0.204.216/trade_compliance/get_hs_code";
       const config = {
-          headers: {
-              "Content-Type": "application/json",
-              
-          },
+        headers: {
+          "Content-Type": "application/json",
+        },
       };
 
-    //   const body = {
-    //     "chapter": "62",
-    //     "country": "United States",
-    //     "format": "questions",
-    //     "description": "shirt",
-    //     "answers": {
-    //         "gender": "Women's or girls",
-    //         "material" : {
-    //             "cotton": 70
-    //         }
-    //     }
-    // };
-    const body = JSON.stringify(Data);
+      const body = JSON.stringify(Data);
       const res = await axios.post(url, body, config);
-  
+
       console.log("sent", res);
-  } catch (err) {
+      setsuc("Data submitted succefully");
+      
+    } catch (err) {
       console.log("Error in sending data!", err.response.data);
       alert("Error in sending data!");
       // if (err.response.data.detail === "Invalid token.") {
       //     history.push("/");
       //     localStorage.removeItem("token");
       // }
-  }
-  }
-  useEffect(() => {
-    setData((state)=>{
-      return{
-        ...state,
-      answers: {
-        gender: gendata,
-        material : {
-           cotton : Number(matdata.cotton),
-           wool: Number(matdata.wool),
-        }
     }
   }
-      });
-
-}, [gendata,matdata]);
-
+  useEffect(() => {
+    setData((state) => {
+      return {
+        ...state,
+        description: sterm,
+        answers: {
+          gender: gendata,
+          material: matdata,
+        },
+      };
+    });
+  }, [gendata, matdata, sterm]);
 
   const onChangeHandler = (e) => {
-    
     setData((state) => {
       return {
         ...state,
         [e.target.name]: e.target.value,
-         description: sterm,
       };
     });
   };
@@ -98,29 +84,75 @@ function Trade() {
         [e.target.name]: e.target.value,
       };
     });
-
   };
   const onChangeHandler2 = (e) => {
     setgendata(() => {
-      
-      return (e.target.value);
+      return e.target.value;
     });
-    
-    
-  };
-  
-  const onSubmitHandler = (e) => {
-    e.preventDefault();
-    
-    console.log(Data);
-    addTodo();
-    
   };
 
-  const [sterm, setsterm] = useState("");
-  const [cot, setcot] = useState(false);
-  const [dis, setdis] = useState("none");
-  let m = 0;
+  const [err, seterr] = useState("");
+  const [erd,seterd] =useState(null);
+  const [isSubmit, setisSubmit] = useState(false);
+  const validity = (Data) => {
+    const obj = Data.answers.material;
+    let sum = 0;
+    let k=0;
+    for (const property in obj) {
+      // console.log(`${property}: ${obj[property]} `);
+      if (
+        (Number(obj[property]) <= 100 && Number(obj[property]) >= 0) ||
+        obj[property] == null
+      ) {
+        sum = sum + Number(obj[property]);
+      } 
+      else {
+        seterr("invalid input");
+        k=1;
+        break;
+      }
+    }
+    if(!k){
+    if (sum === 100) {
+      seterr("");
+      
+    } else {
+      seterr("sum should be 100");
+      // console.log(sum);
+     
+    }}
+    
+    if(JSONDATA.filter((val)=>{
+      if(val === Data.description){
+       return val;
+      }
+    }).length==0){
+    seterd(0);
+    setsterm("");
+    }
+    else{
+    seterd(1);
+    
+    }
+  };
+
+  useEffect(() => {
+
+    if(err=="" && isSubmit && erd){
+    addTodo();
+    setisSubmit(false);
+  }
+   
+    
+    },[isSubmit]);
+ 
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+    validity(Data);
+    console.log(Data);
+    setisSubmit(true);
+    // addTodo();
+  };
 
   let aks = () => {
     let arr = JSONDATA.filter((val) => {
@@ -173,7 +205,7 @@ function Trade() {
         <div className="f-m fw-b abt">About your Product</div>
 
         <div className="f3">
-          <form className="form" onSubmit={onSubmitHandler}>
+          <form id="myForm" className="form" onSubmit={onSubmitHandler}>
             <div className="input">
               <label for="country" className="f-sx fw-m lab">
                 Origin country:
@@ -248,8 +280,9 @@ function Trade() {
                   className="insp"
                   onChange={(event) => {
                     setsterm(event.target.value);
-
                     setcot(true);
+                    // onChangeHandler(event);
+                    // console.log(event.target.value);
                   }}
                 ></input>
                 {cot ? aks() : ""}
@@ -357,6 +390,8 @@ function Trade() {
                       className="compin"
                       name="cotton"
                       type="tel"
+                      min={0}
+                      max={100}
                       onChange={(e) => {
                         onChangeHandler1(e);
                       }}
@@ -371,34 +406,67 @@ function Trade() {
                       onChange={(e) => {
                         onChangeHandler1(e);
                       }}
-                      
                     ></input>
                     <div className="cmo">%wool or fine animal hair</div>
                   </div>
                   <div className="co">
-                    <input className="compin" type="number"></input>
+                    <input
+                      name="synthetic fibre"
+                      className="compin"
+                      onChange={(e) => {
+                        onChangeHandler1(e);
+                      }}
+                      type="number"
+                    ></input>
                     <div className="cmo">%synthetic fibres</div>
                   </div>
                   <div className="co">
-                    <input className="compin" type="number"></input>
+                    <input
+                      className="compin"
+                      onChange={(e) => {
+                        onChangeHandler1(e);
+                      }}
+                      type="number"
+                    ></input>
                     <div className="cmo">%other textile material</div>
                   </div>
                   <div className="co">
-                    <input className="compin" type="number"></input>
+                    <input
+                      className="compin"
+                      onChange={(e) => {
+                        onChangeHandler1(e);
+                      }}
+                      type="number"
+                    ></input>
                     <div className="cmo">%manmade fibre</div>
                   </div>
                   <div className="co">
-                    <input className="compin" type="number"></input>
+                    <input
+                      className="compin"
+                      onChange={(e) => {
+                        onChangeHandler1(e);
+                      }}
+                      type="number"
+                    ></input>
                     <div className="cmo">%artificial fibers</div>
                   </div>
                   <div className="co">
-                    <input className="compin" type="number"></input>
+                    <input
+                      className="compin"
+                      onChange={(e) => {
+                        onChangeHandler1(e);
+                      }}
+                      type="number"
+                    ></input>
                     <div className="cmo">%Kashmir (cashmere) goats</div>
                   </div>
                 </div>
               </div>
               <div className="usd"></div>
             </div>
+            <div style={{alignSelf:"center",color:"red"}}>
+                    {err}
+                  </div>
 
             <div className="btns">
               <Button
@@ -408,6 +476,7 @@ function Trade() {
                 Submit
               </Button>
             </div>
+            <div style={{color:"#52c41a"}}>{suc}</div>
           </form>
           <div>
             <div className="ushb">USA Shedule B</div>
