@@ -1,35 +1,35 @@
+
+
 import React, { useEffect, useState } from "react";
 import Image from "react";
 import JSONDATA from "../data.json";
-import Axios from "axios";
 import i from "./i.svg";
 import Button from "../../Utilities/Components/Button/Button";
 import "../Logistics/LogisticsMainPage.scss";
 import Sidebar from "../../Utilities/Components/Sidebar/Sidebar";
 import "./Trade.scss";
 import axios from "axios";
-import { Metadata } from "libphonenumber-js/core";
-function Trade() {
-  const url = "http://65.0.204.216/trade_compliance/get_hs_code";
 
-  const [matdata, setmatdata] = useState({});
-  const [gendata, setgendata] = useState("");
+function Trade() {
+  // const url = "http://65.0.204.216/trade_compliance/get_hs_code";
+
+  // const [matdata, setmatdata] = useState({});
+  // const [gendata, setgendata] = useState("");
   const [sterm, setsterm] = useState("");
   const [cot, setcot] = useState(false);
-  const [dis, setdis] = useState("none");
+  // const [dis, setdis] = useState("none");
   const [suc, setsuc] = useState("");
   let m = 0;
 
   const [Data, setData] = useState({
-    hscode:"6106",
-    chapter: "61",
-    format: "questions",
+    // hscode:"6106",
+    req_type : 0,
     description: "",
-
-    answers: {
-      gender: gendata,
-      material: {},
-    },
+    country : "USA",
+    // answers: {
+    //   gender: gendata,
+    //   material: {},
+    // },
   });
 
   async function addTodo() {
@@ -38,10 +38,14 @@ function Trade() {
       const config = {
         headers: {
           "Content-Type": "application/json",
+          
         },
       };
-
-      const body = JSON.stringify(Data);
+      const  dt = {"req_type" : 0,
+        "description": "overcoats",
+        "country" : "USA"}
+      const body = JSON.stringify(dt);
+      console.log(body);
       const res = await axios.post(url, body, config);
 
       console.log("sent", res);
@@ -61,13 +65,10 @@ function Trade() {
       return {
         ...state,
         description: sterm,
-        answers: {
-          gender: gendata,
-          material: matdata,
-        },
+       
       };
     });
-  }, [gendata, matdata, sterm]);
+  }, [sterm]);
 
   const onChangeHandler = (e) => {
     setData((state) => {
@@ -77,50 +78,10 @@ function Trade() {
       };
     });
   };
-  const onChangeHandler1 = (e) => {
-    setmatdata((state) => {
-      return {
-        ...state,
-        [e.target.name]: e.target.value,
-      };
-    });
-  };
-  const onChangeHandler2 = (e) => {
-    setgendata(() => {
-      return e.target.value;
-    });
-  };
-
   const [err, seterr] = useState("");
   const [erd,seterd] =useState(null);
   const [isSubmit, setisSubmit] = useState(false);
   const validity = (Data) => {
-    const obj = Data.answers.material;
-    let sum = 0;
-    let k=0;
-    for (const property in obj) {
-      // console.log(`${property}: ${obj[property]} `);
-      if (
-        (Number(obj[property]) <= 100 && Number(obj[property]) >= 0) ||
-        obj[property] == null
-      ) {
-        sum = sum + Number(obj[property]);
-      } 
-      else {
-        seterr("invalid input");
-        k=1;
-        break;
-      }
-    }
-    if(!k){
-    if (sum === 100) {
-      seterr("");
-      
-    } else {
-      seterr("sum should be 100");
-      // console.log(sum);
-     
-    }}
     
     if(JSONDATA.filter((val)=>{
       if(val === Data.description){
@@ -132,15 +93,16 @@ function Trade() {
     }
     else{
     seterd(1);
-    
     }
+
   };
 
   useEffect(() => {
 
-    if(err=="" && isSubmit && erd){
+    if(isSubmit && erd){
     addTodo();
     setisSubmit(false);
+    // alert("working");
   }
    
     
@@ -281,8 +243,7 @@ function Trade() {
                   onChange={(event) => {
                     setsterm(event.target.value);
                     setcot(true);
-                    // onChangeHandler(event);
-                    // console.log(event.target.value);
+                  
                   }}
                 ></input>
                 {cot ? aks() : ""}
@@ -298,175 +259,14 @@ function Trade() {
                 className="ph"
                 type="number"
                 name="value"
-                required
-                onChange={(e) => {
-                  onChangeHandler(e);
-                }}
+                // onChange={(e) => {
+                //   onChangeHandler(e);
+                // }}
               ></input>
               <div className="usd">USD</div>
             </div>
 
-            <div className="input">
-              <label for="country" className="f-sx fw-m lab">
-                Construction:
-              </label>
-              <select className="ph" name="country" id="cars" required>
-                {/* <option className="uno" value="" disabled selected>
-                  Please select an option
-                </option> */}
-                <option className="op ff-poppins f-sx fw-m" value="volvo">
-                  Knitted or croching
-                </option>
-                <option className="op ff-poppins f-sx fw-m" value="saab">
-                  other
-                </option>
-              </select>
-              <div className="usd"></div>
-            </div>
-            <div className="input">
-              <label for="country" className="f-sx fw-m lab">
-                Gender:
-              </label>
-
-              <select
-                className="ph"
-                name="gender"
-                id="cars"
-                required
-                onChange={(e) => {
-                  onChangeHandler2(e);
-                }}
-              >
-                <option className="uno" value="" disabled selected>
-                  Please select an option
-                </option>
-                <option
-                  className="op ff-poppins f-sx fw-m"
-                  name="gender"
-                  value="Men's or Boys"
-                >
-                  Men's or Boys
-                </option>
-                <option
-                  className="op ff-poppins f-sx fw-m"
-                  name="gender"
-                  value="Women's or girls"
-                >
-                  Women's or girls
-                </option>
-                <option
-                  className="op ff-poppins f-sx fw-m"
-                  name="gender"
-                  value="Babies"
-                >
-                  Babies
-                </option>
-              </select>
-              <div className="usd"></div>
-            </div>
-            <div className="input">
-              <label for="country" className="f-sx fw-m lab">
-                Composition:
-              </label>
-              <div className="composition">
-                <div
-                  className="compdis"
-                  style={{ cursor: "pointer" }}
-                  onClick={() => {
-                    // e.preventDefault();
-                    if (dis == "none") {
-                      setdis("contents");
-                    } else {
-                      setdis("none");
-                    }
-                  }}
-                >
-                  Composition
-                </div>
-
-                <div className="composition1" style={{ display: `${dis}` }}>
-                  <div className="co">
-                    <input
-                      className="compin"
-                      name="cotton"
-                      type="tel"
-                      min={0}
-                      max={100}
-                      onChange={(e) => {
-                        onChangeHandler1(e);
-                      }}
-                    ></input>
-                    <div className="cmo">%Cotton</div>
-                  </div>
-                  <div className="co">
-                    <input
-                      className="compin"
-                      name="wool"
-                      type="tel"
-                      onChange={(e) => {
-                        onChangeHandler1(e);
-                      }}
-                    ></input>
-                    <div className="cmo">%wool or fine animal hair</div>
-                  </div>
-                  <div className="co">
-                    <input
-                      name="synthetic fibre"
-                      className="compin"
-                      onChange={(e) => {
-                        onChangeHandler1(e);
-                      }}
-                      type="number"
-                    ></input>
-                    <div className="cmo">%synthetic fibres</div>
-                  </div>
-                  <div className="co">
-                    <input
-                      className="compin"
-                      onChange={(e) => {
-                        onChangeHandler1(e);
-                      }}
-                      type="number"
-                    ></input>
-                    <div className="cmo">%other textile material</div>
-                  </div>
-                  <div className="co">
-                    <input
-                      className="compin"
-                      onChange={(e) => {
-                        onChangeHandler1(e);
-                      }}
-                      type="number"
-                    ></input>
-                    <div className="cmo">%manmade fibre</div>
-                  </div>
-                  <div className="co">
-                    <input
-                      className="compin"
-                      onChange={(e) => {
-                        onChangeHandler1(e);
-                      }}
-                      type="number"
-                    ></input>
-                    <div className="cmo">%artificial fibers</div>
-                  </div>
-                  <div className="co">
-                    <input
-                      className="compin"
-                      onChange={(e) => {
-                        onChangeHandler1(e);
-                      }}
-                      type="number"
-                    ></input>
-                    <div className="cmo">%Kashmir (cashmere) goats</div>
-                  </div>
-                </div>
-              </div>
-              <div className="usd"></div>
-            </div>
-            <div style={{alignSelf:"center",color:"red"}}>
-                    {err}
-                  </div>
+           
 
             <div className="btns">
               <Button
